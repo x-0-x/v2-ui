@@ -70,8 +70,8 @@ def inbounds():
 @v2_config_change
 def add_inbound():
     port = int(request.form['port'])
-    if Inbound.query.filter_by(port=port).count() > 0:
-        return jsonify(Msg(False, gettext('port exists')))
+    # if Inbound.query.filter_by(port=port).count() > 0:
+    #     return jsonify(Msg(False, gettext('port exists')))
     listen = request.form['listen']
     protocol = request.form['protocol']
     settings = request.form['settings']
@@ -94,10 +94,10 @@ def update_inbound(in_id):
     update = {}
     port = request.form.get('port')
     add_if_not_none(update, 'port', port)
-    if port:
-        if Inbound.query.filter(and_(Inbound.id != in_id, Inbound.port == port)).count() > 0:
-            return jsonify(Msg(False, gettext('port exists')))
-        add_if_not_none(update, 'tag', 'inbound-' + port)
+    # if port:
+    #     if Inbound.query.filter(and_(Inbound.id != in_id, Inbound.port == port)).count() > 0:
+    #         return jsonify(Msg(False, gettext('port exists')))
+    #     add_if_not_none(update, 'tag', 'inbound-' + port)
     add_if_not_none(update, 'listen', request.form.get('listen'))
     add_if_not_none(update, 'protocol', request.form.get('protocol'))
     add_if_not_none(update, 'settings', request.form.get('settings'))

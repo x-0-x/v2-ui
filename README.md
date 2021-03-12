@@ -3,11 +3,6 @@
 # v2-ui
 支持多协议多用户的 v2ray 面板，Support multi-protocol multi-user v2ray panel
 
-# 帮助翻译
-面板目前支持中文与英文，如果你发现了错误的翻译想帮助修正，或者想帮助翻译成更多的语言，可以在 translations 文件夹中找到各语言对应的翻译，例如 [translations/zh/LC_MESSAGES/message.po](translations/zh/LC_MESSAGES/messages.po) 文件是中文翻译内容。其中 msgid 是英文原文，msgstr 是翻译后的内容，每个 msgid 对应一个 msgstr。
-
-当然，文档目前也只支持中文和英文，如果你想帮助翻译，那么创建一个文件 README.lang.md，lang 是该语言的英文缩写，例如 en 代表英文。
-
 # 详细教程
 https://blog.sprov.xyz/v2-ui/
 
@@ -24,6 +19,7 @@ https://blog.sprov.xyz/v2-ui/
  - 支持自定义 v2ray 配置模板
  - 支持 https 访问面板（需自备域名 + ssl 证书）
  - 更多高级配置项，详见面板
+ - 支持单端口多用户
  
 # 安装&升级
 
@@ -37,7 +33,7 @@ v2-ui 与其它所有关于修改 v2ray 配置文件的工具***完全不兼容*
 
 ## 一键安装&升级
 ```
-bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/nullptrX/v2-ui/master/install.sh)
 ```
 
 ## 手动安装&升级
@@ -45,7 +41,7 @@ bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
 无需手动安装 v2ray，v2-ui 自带官方 v2ray 内核
 
 ### 手动安装 v2-ui
-https://github.com/sprov065/v2-ui/releases
+https://github.com/nullptrX/v2-ui/releases
 
 从该地址中下载最新的 v2-ui-linux.tar.gz 文件，并上传至 VPS 的 /root/ 目录下。若你上传至其它的目录，则将第一行命令的 cd /root/ 改为 cd (实际的目录)，不用包括文件名。
 ```
@@ -147,11 +143,3 @@ systemctl daemon-reload
  - 使用域名访问面板，如：http://blog.sprov.xyz:65432 ，具体域名和端口号以你的实际域名和端口号为准
  - 如果面板设置里正确配置了域名证书和密钥，那么就使用：https://blog.sprov.xyz:65432 访问面板
 >使用 CDN 的同志们注意了，CDN 通常只支持常见的 http 和 https 端口，所以使用 65432 是访问不了的，建议将面板端口设置为 CDN 商家支持的端口，肯定受支持的端口号是 80（http）和 443（https）
-
-## 单端口多用户
-设计之初并没有考虑到这个配置方式，目前再修改已经不太方便，所以之后大概率不会支持这个配置方式。
-
-# Telegram
-群组：https://t.me/sprov_blog
-
-频道：https://t.me/sprov_channel

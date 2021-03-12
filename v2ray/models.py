@@ -1,14 +1,24 @@
 import json
+import random
 
 from sqlalchemy import Column, Integer, String, BIGINT, Boolean
 
 from init import db
 
 
+def generate_random_str(length=9):
+    random_str = ''
+    base_str = 'ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789'
+    for i in range(length):
+        random_str += base_str[random.randint(0, len(base_str) - 1)]
+    return random_str
+
+
 class Inbound(db.Model):
     __tablename__ = 'inbound'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    port = Column(Integer, unique=True, nullable=False)
+    # port = Column(Integer, unique=True, nullable=False)
+    port = Column(Integer, nullable=False)
     listen = Column(String(50), default='0.0.0.0')
     protocol = Column(String(50), nullable=False)
     settings = Column(String, nullable=False)
@@ -27,7 +37,8 @@ class Inbound(db.Model):
         self.protocol = protocol
         self.settings = settings
         self.stream_settings = stream_settings
-        self.tag = 'inbound-%d' % self.port
+        # self.tag = 'inbound-%d' % self.port
+        self.tag = 'inbound-%s' % generate_random_str()
         self.sniffing = sniffing
         self.remark = remark
         self.up = 0
